@@ -7,18 +7,44 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip successSFX;
     [SerializeField] AudioClip crashSFX;
 
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
+
     AudioSource audioSource;
+    Rigidbody rb;
     bool isTransitioning;
+    bool collisionsActive = true;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        rb = GetComponent<Rigidbody>();
+        rb.constraints = RigidbodyConstraints.FreezePositionZ;
+        rb.constraints = RigidbodyConstraints.FreezeRotationX;
+        rb.constraints = RigidbodyConstraints.FreezeRotationY;
         isTransitioning = false;
+    }
+
+    void Update()
+    {
+        HandleDebugKeys();
+    }
+
+    private void HandleDebugKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.L)) // go to next level
+        {
+            LoadNextLevel();
+        }
+        else if (Input.GetKeyDown(KeyCode.C)) // toggle collisions
+        {
+            collisionsActive = !collisionsActive;
+        }
     }
 
     void OnCollisionEnter(Collision other) 
     {
-        if (isTransitioning) { return; }
+        if (isTransitioning || !collisionsActive) { return; }
 
         switch (other.gameObject.tag)
         {
@@ -36,8 +62,9 @@ public class CollisionHandler : MonoBehaviour
 
     void StartCrashSequence()
     {
+        rb.constraints = RigidbodyConstraints.None;
         isTransitioning = true;
-        // Particle effect
+        crashParticles.Play();
         audioSource.Stop();
         audioSource.PlayOneShot(crashSFX);
         GetComponent<Movement>().enabled = false;
@@ -47,7 +74,7 @@ public class CollisionHandler : MonoBehaviour
     void StartLoadSequence()
     {
         isTransitioning = true;
-        // Particle effect
+        successParticles.Play();
         audioSource.Stop();
         GetComponent<AudioSource>().PlayOneShot(successSFX);
         GetComponent<Movement>().enabled = false;
