@@ -104,7 +104,7 @@ public class Movement : MonoBehaviour
     {
         rb.freezeRotation = true; // freezing rotation to manually rotate
         transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
-        rb.freezeRotation = false; // unfreeze rotation so physics takes over
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ; // unfreeze rotation so physics takes over
     }
 
     void PlayParticleSystem(ParticleSystem ps)
