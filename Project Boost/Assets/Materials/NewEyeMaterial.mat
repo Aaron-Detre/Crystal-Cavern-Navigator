@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlowingRockMaterial 5
+  m_Name: NewEyeMaterial
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,7 +67,7 @@ Material:
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0.488
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -79,6 +79,6 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 0.5775478, g: 0.10234961, b: 0.9433962, a: 1}
-    - _EmissionColor: {r: 0, g: 0.021058207, b: 0.59607846, a: 1}
+    - _Color: {r: 0.82745105, g: 0.49803925, b: 0.13725491, a: 1}
+    - _EmissionColor: {r: 0.7735849, g: 0.3118772, b: 0, a: 1}
   m_BuildTextureStacks: []
