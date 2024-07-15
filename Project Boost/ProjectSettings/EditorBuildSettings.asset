@@ -11,10 +11,28 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Under (real).unity
     guid: 2f8d5a68345993c44a3026c304550a38
-  - enabled: 1
-    path: Assets/Scenes/Under.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Levels/Under.unity
     guid: 7f7a3a2e9c714f0459a60beb4b876814
-  - enabled: 1
-    path: Assets/Scenes/Through.unity
+  - enabled: 0
+    path: Assets/Scenes/Unused Levels/Through.unity
     guid: 8179031a87a10214fa48385d8aa5a49f
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Over-Under.unity
+    guid: 21ade54cd22431f4d86ef53028b7a0a2
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Long Tunnels.unity
+    guid: e1e00f8beb5210f40bf5fd041e35d8b7
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Under-Over-Under.unity
+    guid: b6bd6b7fb986aa840bfb2c544a228658
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Many Paths.unity
+    guid: cfd63c8b271989c4e8af1e3b00f7ddd4
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Smashing Obstacles.unity
+    guid: 648901c86adbf764fb1d3e29899ecc59
+  - enabled: 1
+    path: Assets/Scenes/Five Good Levels/Worms.unity
+    guid: 580b0a48837b4f941ad7709f23d4870e
   m_configObjects: {}

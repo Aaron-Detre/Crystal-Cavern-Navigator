@@ -14,7 +14,6 @@ public class Oscillator : MonoBehaviour
     void Start()
     {
         startingPosition = transform.position;
-        Debug.Log(startingPosition);
     }
 
     void Update()
