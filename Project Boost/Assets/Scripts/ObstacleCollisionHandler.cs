@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 
+/*
+ * Handles the Game Objects behavior when it is collided with.
+ */
 public class ObstacleCollisionHandler : MonoBehaviour
 {
     Rigidbody rb;
@@ -14,22 +14,20 @@ public class ObstacleCollisionHandler : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-        if (other.gameObject.tag == "Player")
-        {
-            rb.useGravity = true;
+        // Activates gravity causing a sort of ragdoll effect on the Game Object when collided.
+        rb.useGravity = true; 
 
-            // Only works in the case where oscillator is on parent and spinner is on this.
-            // Not sure if there's a more abstracted way of doing it.
-            if (GetComponentInParent<Oscillator>() != null)
-            {
-                GetComponentInParent<Oscillator>().enabled = false;
-            }
-            
-            if (TryGetComponent(out Spinner spinner))
-            {
-                spinner.enabled = false;
-                Debug.Log("Hit");
-            }
+        // Disables Game Object's Pulsator component if it has one.
+        if (TryGetComponent(out Pulsator pulsator))
+        {
+            pulsator.enabled = false;
+        }
+        
+        // Disables Game Object's Spinner component if it has one.
+        if (TryGetComponent(out Spinner spinner))
+        {
+            spinner.enabled = false;
         }
     }
+    
 }

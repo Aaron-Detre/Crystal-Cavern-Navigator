@@ -1,8 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Smoothly moves a Game Object back and forth.
+ */
 public class Oscillator : MonoBehaviour
 {
     [SerializeField] Vector3 movementVector;

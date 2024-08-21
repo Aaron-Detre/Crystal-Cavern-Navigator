@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Quits the game when the Escape key is pressed.
+ */
 public class QuitApplication : MonoBehaviour
 {
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Escape");
             Application.Quit();
         }
     }

@@ -1,8 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
+/*
+ * Rotates the Game Object around its Z axis
+ */
 public class Spinner : MonoBehaviour
 {
     [SerializeField] float rotation = 30;

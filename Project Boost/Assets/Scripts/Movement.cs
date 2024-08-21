@@ -1,35 +1,33 @@
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Handles the rocket's player controls and thruster particle/sound effects.
+ */
 public class Movement : MonoBehaviour
 {
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationThrust = 100f;
     [SerializeField] AudioClip mainEngine;
-
     [SerializeField] ParticleSystem mainEngineParticles;
-    // [SerializeField] ParticleSystem leftBoosterParticles;
-    // [SerializeField] ParticleSystem rightBoosterParticles;
 
     Rigidbody rb;
     AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         ProcessThrust();
         ProcessRotation();
     }
 
+    /*
+     * Applies the main thruster when the Spacebar is held down.
+     */
     void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -42,6 +40,9 @@ public class Movement : MonoBehaviour
         }
     }
 
+    /*
+     * Applies the left/right rotation thrusters when the A/D is held down.
+     */
     void ProcessRotation()
     {
         if (Input.GetKey(KeyCode.A))
@@ -52,66 +53,68 @@ public class Movement : MonoBehaviour
         {
             StartRightRotation();
         }
-        /*
-        else
-        {
-            StopRotation();
-        }
-        */
     }
 
+    /*
+     * Starts the main thruster by applying force to the rocket, playing the engine 
+     * sfx, and activating the thruster particle system.
+     */
     void StartThrusting()
     {
+        // Applies a positive force onto the rocket's Y axis. 
         rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
 
+        // Starts the engine audio if it isn't already playing.
         if (!audioSource.isPlaying)
         {
             audioSource.PlayOneShot(mainEngine);
         }
 
-        PlayParticleSystem(mainEngineParticles);
+        // Starts the thruster particle system if it isn't already playing.
+        if (!mainEngineParticles.isPlaying)
+        {
+            mainEngineParticles.Play();
+        }
     }
 
+    /*
+     * Stops the sound/particle effects of the thruster.
+     */
     void StopThrusting()
     {
         audioSource.Stop();
         mainEngineParticles.Stop();
     }
 
+    /*
+     * Applies a left rotation (positive rotation on the Z axis) to the rocket.
+     */
     private void StartLeftRotation()
     {
         ApplyRotation(rotationThrust);
-        // PlayParticleSystem(rightBoosterParticles);
-        // leftBoosterParticles.Stop();
-    }
-
-    private void StartRightRotation()
-    {
-        ApplyRotation(-rotationThrust);
-        // PlayParticleSystem(leftBoosterParticles);
-        // rightBoosterParticles.Stop();
     }
 
     /*
-    private void StopRotation()
+     * Applies a right rotation (negative rotation on the Z axis) to the rocket.
+     */
+    private void StartRightRotation()
     {
-        leftBoosterParticles.Stop();
-        rightBoosterParticles.Stop();
+        ApplyRotation(-rotationThrust);
     }
-    */
 
+    /*
+     * Applies a given rotation to the rocket.
+     */
     void ApplyRotation(float rotationThisFrame)
     {
-        rb.freezeRotation = true; // freezing rotation to manually rotate
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezePositionZ; // unfreeze rotation so physics takes over
-    }
+        // Freezing rotation to manually rotate.
+        rb.freezeRotation = true; 
 
-    void PlayParticleSystem(ParticleSystem ps)
-    {
-        if (!ps.isPlaying)
-        {
-            ps.Play();
-        }
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+
+        // Unfreeze rotation so physics takes over.
+        rb.constraints = RigidbodyConstraints.FreezeRotationX 
+                        | RigidbodyConstraints.FreezeRotationY 
+                        | RigidbodyConstraints.FreezePositionZ; 
     }
 }

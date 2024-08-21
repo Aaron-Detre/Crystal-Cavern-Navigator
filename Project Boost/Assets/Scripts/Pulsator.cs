@@ -1,10 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * Smoothly contracts then expands a Game Object.
+ */
 public class Pulsator : MonoBehaviour
 {
-    [SerializeField] [Range(0,1)] float pulsePercent = .8f;
+    // pulsPercent dictatates the minimum scale the Game Object will contract to
+    [SerializeField] [Range(0,1)] float pulsePercent = .8f; 
     [SerializeField] float pulseSpeed = 1f;
     Vector3 scale;
     
@@ -12,7 +14,6 @@ public class Pulsator : MonoBehaviour
     {
         scale = transform.localScale;
     }
-
 
     void Update()
     {        
